@@ -1,3 +1,4 @@
+
 /*
  * Desc: Gazebo link attacher plugin.
  * Author: Sammy Pfeiffer (sam.pfeiffer@pal-robotics.com)
@@ -70,8 +71,12 @@ namespace gazebo
                               gazebo_ros_link_attacher::Attach::Response &res);
         bool detach_callback(gazebo_ros_link_attacher::Attach::Request &req,
                              gazebo_ros_link_attacher::Attach::Response &res);
+        void OnUpdate();
 
         std::vector<fixedJoint> joints;
+        std::vector<fixedJoint> detach_vector;
+
+        event::ConnectionPtr beforePhysicsUpdateConnection;
 
         /// \brief The physics engine.
         physics::PhysicsEnginePtr physics;
@@ -84,4 +89,3 @@ namespace gazebo
 }
 
 #endif
-
